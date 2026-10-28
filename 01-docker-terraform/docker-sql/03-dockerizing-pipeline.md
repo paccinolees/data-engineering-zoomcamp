@@ -72,7 +72,7 @@ ENV PATH="/app/.venv/bin:$PATH"
 # Copy dependency files first (better layer caching) (this already contains pandas and pyarrow that we installed with uv earlier),
 # copy them to the current dir './'
 COPY "pyproject.toml" "uv.lock" ".python-version" ./
-# Install dependencies from lock file (ensures reproducible builds)
+# Install dependencies from uv.lock file (ensures reproducible builds)
 RUN uv sync --locked
 
 # Copy application code
