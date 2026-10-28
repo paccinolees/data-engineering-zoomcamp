@@ -59,7 +59,7 @@ What about uv? Let's use it instead of using pip:
 # Start with slim Python 3.13 image
 FROM python:3.13.10-slim
 
-# Copy uv binary from official uv image (multi-stage build pattern)
+# Copy uv binary from official uv image, from /uv folder into /bin of our image (multi-stage build pattern)
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/
 
 # Set working directory
