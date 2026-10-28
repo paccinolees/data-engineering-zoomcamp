@@ -65,7 +65,7 @@ COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/
 # Set working directory
 WORKDIR /app
 
-# Add virtual env as another PATH so we can use installed packages in VM eg. the python,uv etc. there
+# Add virtual env as another PATH so we can use installed packages in VM eg. the VM's version of python etc.
 # Dont forget to add old sys $PATH to be able to still use default commands eg. curl etc...
 ENV PATH="/app/.venv/bin:$PATH"
 
