@@ -68,7 +68,7 @@ WORKDIR /app
 # Add virtual environment to PATH so we can use installed packages
 ENV PATH="/app/.venv/bin:$PATH"
 
-# Copy dependency files first (better layer caching)
+# Copy dependency files first (better layer caching), copy them to the current dir './'
 COPY "pyproject.toml" "uv.lock" ".python-version" ./
 # Install dependencies from lock file (ensures reproducible builds)
 RUN uv sync --locked
