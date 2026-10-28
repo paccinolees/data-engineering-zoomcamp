@@ -65,7 +65,7 @@ COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/
 # Set working directory
 WORKDIR /app
 
-# Add virtual environment to PATH so we can use installed packages
+# Add virtual environment to PATH so we can use installed packages like uv etc...
 ENV PATH="/app/.venv/bin:$PATH"
 
 # Copy dependency files first (better layer caching) (this already contains pandas and pyarrow that we installed with uv earlier),
