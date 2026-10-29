@@ -84,19 +84,19 @@ When prompted, enter the password: `root`
 Try some SQL commands:
 
 ```sql
--- List tables
+-- List tables, will see blank
 \dt
 
--- Create a test table
+-- Create a test table, cols: id(int), name(string of 50 chars)
 CREATE TABLE test (id INTEGER, name VARCHAR(50));
 
--- Insert data
+-- Insert 1 row of data: id=1, name='Hello Docker'
 INSERT INTO test VALUES (1, 'Hello Docker');
 
 -- Query data
 SELECT * FROM test;
 
--- Exit
+-- Exit from pgcli
 \q
 ```
 
