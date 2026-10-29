@@ -23,11 +23,12 @@ docker run -it --rm \
 ### Explanation of Parameters
 
 * `-e` sets environment variables (user, password, database name)
-* `-v ny_taxi_postgres_data:/var/lib/postgresql` creates a **named volume**
+* `-v ny_taxi_postgres_data:/var/lib/postgresql` creates a **named volume**, mapped to /var/lib/postgresql inside container
+  * (named volume is different from mapping by 'bind mount' using -v with absolute file path that we did earlier in 01)
   * Docker manages this volume automatically
   * Data persists even after container is removed
   * Volume is stored in Docker's internal storage
-* `-p 5432:5432` maps port 5432 from container to host
+* `-p 5432:5432` maps port 5432 from container to host machine(similiar to when we mapped volume of host into container using -v)
 * `postgres:18` uses PostgreSQL version 18 (latest as of Dec 2025)
 
 ### Alternative Approach - Bind Mount
