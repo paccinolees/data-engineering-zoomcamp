@@ -62,7 +62,7 @@ Install pgcli:
 uv add --dev pgcli
 ```
 
-The `--dev` flag marks this as a development dependency (not needed in production). It will be added to the `[dependency-groups]` section of `pyproject.toml` instead of the main `dependencies` section.
+The `--dev` flag marks this as a development dependency(not needed in production). It will be added to the `[dependency-groups]` section of `pyproject.toml` instead of the main `dependencies` section, so 'uv sync --locked' will only sync the main dependencies required for prod
 
 Now use it to connect to Postgres:
 
