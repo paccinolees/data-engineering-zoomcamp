@@ -37,17 +37,17 @@ Create a new notebook and run:
 ```python
 import pandas as pd
 
-# Read a sample of the data
+# Read a sample of the data from URL
 prefix = 'https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow/'
 df = pd.read_csv(prefix + 'yellow_tripdata_2021-01.csv.gz', nrows=100)
 
-# Display first rows
+# Display first few rows
 df.head()
 
-# Check data types
+# Check data types of each col
 df.dtypes
 
-# Check data shape
+# Check data shape(row * col)
 df.shape
 ```
 ### Note 
