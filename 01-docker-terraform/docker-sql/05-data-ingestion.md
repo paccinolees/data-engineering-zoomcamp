@@ -154,7 +154,8 @@ CREATE TABLE yellow_taxi_data (
 ### Now, actually Create the Table
 
 ```python
-df.head(n=0).to_sql(name='yellow_taxi_data', con=engine, if_exists='replace') #to_sql used smth similiar to get_schema behind the scene to generate sql code that creates the table
+df.head(n=0).to_sql(name='yellow_taxi_data', con=engine, if_exists='replace') 
+#to_sql used smth similiar to get_schema behind the scene to generate sql code that creates the table
 ```
 
 `head(n=0)` makes sure we only create the table with its cols, we don't add any data yet
