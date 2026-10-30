@@ -41,7 +41,7 @@ cd pipeline
 docker build -t taxi_ingest:v001 .
 ```
 
-## Run the Containerized Ingestion
+## Run the Containerized Ingestion script
 
 ```bash
 docker run -it \
