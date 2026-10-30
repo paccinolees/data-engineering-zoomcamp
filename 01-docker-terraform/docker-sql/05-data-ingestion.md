@@ -122,7 +122,8 @@ engine = create_engine('postgresql+psycopg://root:root@localhost:5432/ny_taxi')
 ### Get DDL Schema
 
 ```python
-print(pd.io.sql.get_schema(df, name='yellow_taxi_data', con=engine))
+#used to output SQL CREATE TABLE DDL statement(as a string) from a pandas df
+print(pd.io.sql.get_schema(df, name='yellow_taxi_data', con=engine)) 
 ```
 
 Output:
