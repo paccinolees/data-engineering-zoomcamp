@@ -45,7 +45,7 @@ docker build -t taxi_ingest:v001 .
 
 ```bash
 docker run -it \
-  --network=pg-network \
+  --network=pg-network \ #only after creating a docker network in CLI by: 'docker network create <network_name>'
   taxi_ingest:v001 \
     --pg-user=root \
     --pg-pass=root \
