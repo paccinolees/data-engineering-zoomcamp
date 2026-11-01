@@ -48,12 +48,12 @@ def run(pg_user, pg_pass, pg_host, pg_port, pg_db, year, month, target_table, ch
     prefix = 'https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow'
     url = f'{prefix}/yellow_tripdata_{year}-{month:02d}.csv.gz'
     #i hav prob with downloading via github URL so will upload data into container manually with volume bind mount
-    file_path = f'/app/data/yellow_tripdata_{year}-{month:02d}.csv.gz'
+    ##file_path = f'/app/data/yellow_tripdata_{year}-{month:02d}.csv.gz'
     engine = create_engine(f'postgresql+psycopg://{pg_user}:{pg_pass}@{pg_host}:{pg_port}/{pg_db}')
 
     df_iter = pd.read_csv(
-        #url,
-        file_path,
+        url,
+        #file_path,
         dtype=dtype,
         parse_dates=parse_dates,
         iterator=True,
