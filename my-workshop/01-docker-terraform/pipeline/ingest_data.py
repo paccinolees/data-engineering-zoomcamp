@@ -52,7 +52,8 @@ def run(pg_user, pg_pass, pg_host, pg_port, pg_db, year, month, target_table, ch
     engine = create_engine(f'postgresql+psycopg://{pg_user}:{pg_pass}@{pg_host}:{pg_port}/{pg_db}')
 
     df_iter = pd.read_csv(
-        url,
+        #url,
+        file_path,
         dtype=dtype,
         parse_dates=parse_dates,
         iterator=True,
