@@ -27,3 +27,25 @@ docker run -it \
   --network=pg-network \
   --name pgadmin \
   dpage/pgadmin4
+
+  #fix network connection issue(eg. pgadmin cant connect(timed out) with pgdatabase etc.)
+  docker compose ps
+  
+  pgadmin_id=$(docker compose ps -q pgadmin)
+  network=$(docker inspect "$pgadmin_id" \
+    --format '{{range $name, $net := .NetworkSettings.Networks}}{{println $name}}{{end}}' |
+    head -n1)
+  bridge="br-$(docker network inspect --format '{{.Id}}' "$network" | cut -c1-12)"
+
+  echo "Compose network: $network; bridge: $bridge"
+
+  docker run --rm --network="$network" postgres:18 \
+    pg_isready -h pgdatabase -p 5432 -U root -d ny_taxi -t 3
+
+  sudo iptables-legacy -C FORWARD \
+    -i "$bridge" -o "$bridge" -j ACCEPT 2>/dev/null ||
+  sudo iptables-legacy -I FORWARD 1 \
+    -i "$bridge" -o "$bridge" -j ACCEPT
+
+  docker run --rm --network="$network" postgres:18 \
+    pg_isready -h pgdatabase -p 5432 -U root -d ny_taxi -t 3
