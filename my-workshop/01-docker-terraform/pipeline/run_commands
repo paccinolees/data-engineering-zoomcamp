@@ -49,3 +49,20 @@ docker run -it \
 
   docker run --rm --network="$network" postgres:18 \
     pg_isready -h pgdatabase -p 5432 -U root -d ny_taxi -t 3
+
+#Fix network connection issue for ingestion container to connect to pg
+network=pipeline_default
+bridge="br-$(docker network inspect --format '{{.Id}}' "$network" | cut -c1-12)"
+dns=168.63.129.16
+
+sudo iptables-legacy -C FORWARD -i "$bridge" -o "$bridge" -j ACCEPT 2>/dev/null ||
+  sudo iptables-legacy -I FORWARD 1 -i "$bridge" -o "$bridge" -j ACCEPT
+
+sudo iptables-legacy -C FORWARD -i "$bridge" -d "$dns" -p udp --dport 53 -j ACCEPT 2>/dev/null ||
+  sudo iptables-legacy -I FORWARD 1 -i "$bridge" -d "$dns" -p udp --dport 53 -j ACCEPT
+
+sudo iptables-legacy -C FORWARD -i "$bridge" -p tcp --dport 443 -j ACCEPT 2>/dev/null ||
+  sudo iptables-legacy -I FORWARD 1 -i "$bridge" -p tcp --dport 443 -j ACCEPT
+
+sudo iptables-legacy -C FORWARD -o "$bridge" -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT 2>/dev/null ||
+  sudo iptables-legacy -I FORWARD 1 -o "$bridge" -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
