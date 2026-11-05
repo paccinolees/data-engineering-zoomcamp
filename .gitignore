@@ -17,3 +17,5 @@ serving_dir
 *.parquet
 *.csv
 *.duckdb
+data/
+/my-workshop/01-docker-terraform/terraform-demo/keys/
