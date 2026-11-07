@@ -62,7 +62,7 @@ We have a warning: (Note that this warning might pop up later for some users, so
 /tmp/ipykernel_25483/2933316018.py:1: DtypeWarning: Columns (6) have mixed types. Specify dtype option on import or set low_memory=False.
 ```
 
-So we need to specify the types:
+So we need to specify the types(NOTE: irl if data dict. not given, then we can ingest to sql as all 'text' type into a staging table, then do exploration there then convert into production table):
 
 ```python
 dtype = {
